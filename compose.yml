@@ -1,0 +1,16 @@
+services:
+  app:
+    build: .
+    depends_on:
+      - postgres
+    env_file:
+      - .env
+    ports:
+      - ${APP_PORT}:${APP_PORT}
+  postgres:
+    image: postgres:alpine
+    restart: always
+    env_file:
+      - .env
+    ports:
+      - ${POSTGRES_PORT}:5432
